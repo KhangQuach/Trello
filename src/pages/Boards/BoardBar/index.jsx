@@ -9,8 +9,8 @@ import Avatar from '@mui/material/Avatar'
 import AvatarGroup from '@mui/material/AvatarGroup'
 import Button from '@mui/material/Button'
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-
-function BoardBar() {
+import { capitalizeFirstLetter } from '~/utils/formatter'
+function BoardBar({board}) {
   const MENU_STYLES= {
     color: '#fff',
     bgcolor: 'transparent',
@@ -39,12 +39,12 @@ function BoardBar() {
       <Box sx={{display:'flex', alignItem:'center', gap: 2}}>
         <Chip 
           icon={<FaceIcon />}
-          label="KhangQuach Dev"
+          label={board?.title}
           clickable={true}
           sx={MENU_STYLES}/>
         <Chip 
           icon={<VpnLockIcon />}
-          label="Public/Private Workspace"
+          label={capitalizeFirstLetter(board?.type)}
           clickable={true}
           sx={MENU_STYLES}/>
         <Chip 

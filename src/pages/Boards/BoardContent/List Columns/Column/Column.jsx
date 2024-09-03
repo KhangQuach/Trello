@@ -16,9 +16,10 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import DragHandleIcon from '@mui/icons-material/DragHandle'
 import ListCards from './List Cards/ListCards'
+import { mapOrder } from '~/utils/sorts'
 
-const Column = () => {
-  
+const Column = ({column}) => {
+  const orderedCards = mapOrder(column?.cards, column?.cardOrderIds,'_id')
   const COLUMN_HEADER_HEIGHT = '50px'
   const COLUMN_FOOTER_HEIGHT = '56px'
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -51,7 +52,9 @@ const Column = () => {
         <Typography sx={{
           fontWeight: 'bold',
           cursor: 'pointer'
-        }}>Column title</Typography>
+        }}>
+          {column?.title}
+        </Typography>
         <Box>
           <Tooltip title='More options'>
             <ExpandMoreIcon
@@ -127,7 +130,7 @@ const Column = () => {
         </Box>
       </Box>
       {/* Box List Card */}
-      <ListCards/>
+      <ListCards cards={orderedCards}/>
       {/* Box Footer Column */}
       <Box sx={{
         height: COLUMN_FOOTER_HEIGHT,

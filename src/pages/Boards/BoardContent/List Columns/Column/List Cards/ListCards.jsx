@@ -10,8 +10,7 @@ import Button from '@mui/material/Button'
 import { Typography } from '@mui/material'
 import TrelloCard from './Card/TrelloCard'
 import { useState } from 'react'
-const ListCards = () => {
-  const [isData, setIsData] = useState(true)
+const ListCards = ({cards}) => {
   const COLUMN_HEADER_HEIGHT = '50px'
   const COLUMN_FOOTER_HEIGHT = '56px'
   return (
@@ -31,11 +30,9 @@ const ListCards = () => {
         backgroundColor: '#fff'
       }
     }}>
-      <TrelloCard isData={isData} />
-      <TrelloCard isData={isData}/>
-      <TrelloCard/>
-      <TrelloCard/>
-      <TrelloCard/>
+      {cards?.map((card, index ) =>{
+        return <TrelloCard key={card?._id} card={card}/>
+      })}
     </Box>
   )
 }
